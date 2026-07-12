@@ -1,0 +1,54 @@
+// Startup and session UI settings.
+
+// 桌面壁纸的守护进程
+spawn-at-startup "swww-daemon"
+
+// 干净版本：先停用 overview 壁纸和随机切换，降低 layer-shell 干扰。
+// spawn-at-startup "swww-daemon" "-n" "overview"
+// spawn-at-startup "waypaper" "--random"
+// spawn-at-startup "waypaper" "--restore"
+
+// 询问管理员权限功能（身份验证）
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+// 干净版本：先停用自动模糊脚本。
+// spawn-at-startup "~/.config/scripts/niri_auto_blur_bg.sh"
+
+// 干净版本：不在 niri 内手动拉起 portal，避免和会话自带的 dbus/portal 冲突。
+// spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=niri & /usr/lib/xdg-desktop-portal-gnome"
+// spawn-sh-at-startup "systemctl --user set-environment XDG_SESSION_CLASS=user"
+
+// 通知程序
+spawn-at-startup "mako"
+
+// 任务栏
+// spawn-at-startup "waybar"
+
+// 输入法
+spawn-at-startup "fcitx5"
+
+// 剪贴板守护进程
+spawn-at-startup "clipse" "--listen"
+
+// wayland -> x11 剪贴板同步
+spawn-at-startup "wl-paste" "--watch" "xclip" "-selection" "clipboard"
+
+// x11 -> wayland 剪贴板同步
+spawn-at-startup "~/.local/bin/clipsync-x2w"
+
+// 闲置时自动熄屏锁屏休眠的脚本
+spawn-at-startup "~/.config/niri/scripts/swayidle.sh"
+
+// 大写锁定键的 OSD 显示
+spawn-at-startup "swayosd-server"
+
+// alt+tab 切换器（第三方，无缩略图显示）
+// spawn-at-startup "niriswitcher"
+
+// 干净版本：先停用 quickshell，排除额外 layer-shell/QML 影响。
+// spawn-sh-at-startup "qs -c ~/.config/quickshell"
+
+// 取消启动 niri 时自动开启快捷键教程
+hotkey-overlay {
+    skip-at-startup
+}

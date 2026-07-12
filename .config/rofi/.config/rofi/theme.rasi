@@ -1,0 +1,13 @@
+/*
+ * Rofi Theme Colors
+ * Generated with Matugen
+ */
+
+* {
+    main-bg:            #0f141cB3;
+    main-fg:            #dee2efE6;
+    main-br:            #8791a5E6;
+    main-ex:            #0f141cE6;
+    select-bg:          #004f5980;
+    select-fg:          #9defffE6;
+}

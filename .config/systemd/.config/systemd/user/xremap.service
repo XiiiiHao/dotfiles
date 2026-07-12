@@ -1,0 +1,9 @@
+[Unit]
+Description=xremap key remapping daemon
+
+[Service]
+ExecStart=/usr/bin/xremap /home/xiiiihao/.config/xremap/config.yml
+Restart=always
+
+[Install]
+WantedBy=default.target

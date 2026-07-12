@@ -1,0 +1,118 @@
+// Global visual and layout settings.
+
+// 背景模糊
+// blur {
+//     passes 4
+//     offset 4
+//     noise 0.02
+//     saturation 1.5
+// }
+blur {
+    passes 2
+    offset 3.0
+    noise 0.02
+    saturation 1.5
+}
+// 带缩略图的 Alt+Tab 切换窗口功能。
+recent-windows {
+    // off
+    debounce-ms 750
+    open-delay-ms 150
+
+    highlight {
+        active-color "#343943"
+        urgent-color "#ffb4ab"
+        padding 30
+        corner-radius 12
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.2
+    }
+
+    binds {
+        Mod+Tab         { next-window scope="workspace"; }
+        Mod+Shift+Tab   { previous-window scope="workspace"; }
+        Mod+grave       { next-window     filter="app-id"; }
+        Mod+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
+overview {
+    // 关闭 overview 里的工作区阴影，配合透明工作区背景可以让工作区和 overview 共用同一个背景。
+    workspace-shadow {
+        // off
+    }
+
+    zoom 0.5
+}
+
+layout {
+    // 设置工作区背景颜色
+    // background-color "transparent"
+
+    // 窗口和窗口之间的间距
+    gaps 12
+
+    // always-center-single-column
+    // empty-workspace-above-first
+    center-focused-column "on-overflow"
+
+    // 预设窗口宽度
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        // fixed 1920
+    }
+
+    // 默认窗口宽度
+    default-column-width { proportion 0.5; }
+    // default-column-width {}
+
+    // 聚焦窗口边框
+    focus-ring {
+        // off
+        width 3
+        active-gradient from="#50d7edcc" to="#a8c8ffcc" angle=135
+        urgent-color "#ffb4ab"
+
+        // active-color "@primary"
+        // active-color "#00000000"
+        // inactive-color "#505050"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+
+    // 窗口边框
+    border {
+        off
+
+        width 2
+        active-color "#ffc87f"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+
+        // active-gradient from="#e5989b" to="#ffb4a2" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+
+    // 阴影
+    shadow {
+        on
+        // draw-behind-window true
+
+        softness 20
+        spread 2
+        offset x=-4 y=-4
+        color "rgba(0, 0, 0, 0.7)"
+    }
+
+    // 窗口距离屏幕边缘的距离
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+}

@@ -1,0 +1,13 @@
+/*
+ * Rofi Theme Colors
+ * Generated with Matugen
+ */
+
+* {
+    main-bg:            {{colors.background.default.hex}}B3;
+    main-fg:            {{colors.on_background.default.hex}}E6;
+    main-br:            {{colors.outline.default.hex}}E6;
+    main-ex:            {{colors.surface_dim.default.hex}}E6;
+    select-bg:          {{colors.primary_container.default.hex}}80;
+    select-fg:          {{colors.on_primary_container.default.hex}}E6;
+}

@@ -1,0 +1,75 @@
+{
+  "makefile.configureOnOpen": true,
+  "terminal.integrated.defaultLocation": "editor",
+  "editor.fontSize": 16,
+  "editor.mouseWheelZoom": true,
+  "window.zoomLevel": 2,
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.defaultColorDecorators": "never",
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": "off"
+  },
+  "workbench.colorTheme": "wallbash",
+  "window.autoDetectColorScheme": true,
+  "http.proxy": "http://127.0.0.1:7897",
+  "http.noProxy": [
+    "http://127.0.0.1:7897"
+  ],
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "background.enabled": true,
+  "background.editor": {
+    "useFront": true,
+    "style": {
+      "background-position": "100% 100%",
+      "background-size": "auto",
+      "opacity": 0.3
+    },
+    "styles": [
+      {},
+      {},
+      {}
+    ],
+    "images": [],
+    "interval": 0,
+    "random": false
+  },
+  "background.fullscreen": {
+    // `images` supports online and local images, as well as folders.
+    "images": [
+      // online images, only `https` is allowed.
+      // "https://hostname/online.jpg",
+      // local images
+      // "file:///local/path/img.jpeg",
+      // "/home/xie/downloads/img.gif",
+      // "C:/Users/xie/img.bmp",
+      // "D:\\downloads\\images\\img.webp",
+      // local folders
+      //"",
+    ],
+    "opacity": 0.05,
+    "size": "cover",
+    "position": "center",
+    "interval": 0,
+    "random": false
+  },
+  // `sidebar` and `panel` have the same config as `fullscreen`
+  "background.sidebar": {},
+  "background.panel": {},
+  "git.openRepositoryInParentFolders": "always",
+  "workbench.preferredDarkColorTheme": "Default Light+",
+  "chat.tools.terminal.autoApprove": {
+    "/^cd ~/\\.config/niri && niri validate$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
+}
+

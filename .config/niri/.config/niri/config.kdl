@@ -1,0 +1,43 @@
+//  ██████  ██   ██  ██████  ███████ ██ ███    ██
+//  ██      ██   ██ ██    ██ ██   ██    ██ ██  ██
+//  ███████ ███████ ██    ██ ██████  ██ ██ ██  ██
+//       ██ ██   ██ ██    ██ ██   ██ ██ ██  ██ ██
+//  ██████  ██   ██  ██████  ██   ██ ██ ██   ████
+
+// niri 主配置入口。
+// 每个 include 都是一个独立模块，按功能边界拆分。
+
+include "binds.kdl"
+include "rules.kdl"
+include "output.kdl"
+include "input.kdl"
+include "appearance.kdl"
+include "animation.kdl"
+include "startup.kdl"
+
+// 截图保存位置
+screenshot-path "~/Pictures/Screenshots/Niri-screenshots/%Y-%m-%d %H-%M-%S.png"
+
+// 环境变量
+environment {
+    // LC_CTYPE "zh_CN.UTF-8" 会导致输入法出现漏字
+    // LC_MESSAGES "zh_CN.UTF-8" 让系统全局使用英文，仅主要界面为英文时使用这个环境变量
+    LANG "en_US.UTF-8"
+    LC_CTYPE "en_US.UTF-8"
+
+    // 输入法环境变量
+    XMODIFIERS "@im=fcitx"
+
+    // Qt 主题
+    QT_QPA_PLATFORMTHEME "qt6ct"
+
+    // GTK 软件使用的渲染器，可以解决 N 卡双显卡导致的 GTK 应用启动缓慢问题。
+    GSK_RENDERER "gl"
+
+    // 默认文本编辑器
+    EDITOR "vim"
+}
+
+// 隐藏窗口标题栏。
+// 启用或关闭后，需要重启应用才会生效。
+prefer-no-csd
