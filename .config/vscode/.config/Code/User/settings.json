@@ -3,6 +3,60 @@
   "terminal.integrated.defaultLocation": "editor",
   "editor.fontSize": 16,
   "editor.mouseWheelZoom": true,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "after": [
+        "d",
+        "d"
+      ]
+    },
+    {
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "lineBreakInsert"
+      ],
+      "silent": true
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-b>": false,
+    "<C-a>": false,
+    "<C-n>": false,
+    "<C-f>": false,
+    "<C-p>": false,
+    "<C-w>": false,
+  },
   "window.zoomLevel": 2,
   "[python]": {
     "diffEditor.ignoreTrimWhitespace": false,
@@ -10,15 +64,36 @@
     "editor.formatOnType": true,
     "editor.wordBasedSuggestions": "off"
   },
-  "workbench.colorTheme": "wallbash",
-  "window.autoDetectColorScheme": true,
+  "workbench.colorTheme": "One Dark Pro Mix",
+  "workbench.preferredLightColorTheme": "Light+",
+  "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": true,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.layoutControl.enabled": true,
+  "workbench.layoutControl.type": "both",
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.decorations.colors": true,
+  "workbench.editor.tabCloseButton": "right",
+  "workbench.editor.labelFormat": "default",
+  "window.commandCenter": true,
+  "window.titleBarStyle": "custom",
+  "window.customTitleBarVisibility": "auto",
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "visible",
+  "editor.scrollbar.horizontal": "visible",
+  "editor.stickyScroll.enabled": false,
+  "breadcrumbs.enabled": true,
+  "window.autoDetectColorScheme": false,
   "http.proxy": "http://127.0.0.1:7897",
   "http.noProxy": [
     "http://127.0.0.1:7897"
   ],
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "github.copilot.nextEditSuggestions.enabled": true,
-  "background.enabled": true,
+  "background.enabled": false,
   "background.editor": {
     "useFront": true,
     "style": {
@@ -58,7 +133,6 @@
   "background.sidebar": {},
   "background.panel": {},
   "git.openRepositoryInParentFolders": "always",
-  "workbench.preferredDarkColorTheme": "Default Light+",
   "chat.tools.terminal.autoApprove": {
     "/^cd ~/\\.config/niri && niri validate$/": {
       "approve": true,
@@ -70,6 +144,13 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "workbench.preferredDarkColorTheme": "Atom One Dark Pro UI",
+  "window.menuBarVisibility": "compact",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.editor.tabActionLocation": "right",
+  "workbench.editor.tabActionCloseVisibility": true
 }
-

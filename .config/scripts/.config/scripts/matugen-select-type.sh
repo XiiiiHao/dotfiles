@@ -5,6 +5,7 @@ TYPE_FILE="$CACHE_DIR/type"
 MODE_FILE="$CACHE_DIR/mode"
 UPDATE_SCRIPT="$HOME/.config/scripts/matugen-update.sh"
 WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
+DMS_SESSION="$HOME/.local/state/DankMaterialShell/session.json"
 
 # --- 0. 确保缓存目录存在 ---
 if [ ! -d "$CACHE_DIR" ]; then
@@ -110,20 +111,31 @@ if [ -n "$REAL_VALUE" ]; then
 
     # 获取壁纸路径
     CURRENT_WALLPAPER=""
-    # 1. 问 swww
-    if command -v swww &>/dev/null && pgrep -x "swww-daemon" >/dev/null; then
+    # 1. 读取 DMS 当前壁纸
+    if command -v jq &>/dev/null && [ -f "$DMS_SESSION" ]; then
+        WP_DMS=$(jq -r '.wallpaperPath // empty' "$DMS_SESSION")
+        if [ -n "$WP_DMS" ] && [ -f "$WP_DMS" ]; then
+            CURRENT_WALLPAPER="$WP_DMS"
+        fi
+    fi
+    # 2. 问 swww
+    if [ -z "$CURRENT_WALLPAPER" ] && command -v swww &>/dev/null && pgrep -x "swww-daemon" >/dev/null; then
         WP_SWWW=$(swww query | head -n 1 | awk -F ': ' '{print $2}' | awk '{print $1}')
         if [ -n "$WP_SWWW" ] && [ -f "$WP_SWWW" ]; then
             CURRENT_WALLPAPER="$WP_SWWW"
         fi
     fi
-    # 2. 问 Waypaper 配置
+    # 3. 问 Waypaper 配置
     if [ -z "$CURRENT_WALLPAPER" ] && [ -f "$WAYPAPER_CONFIG" ]; then
         WP_CONF=$(sed -n 's/^wallpaper[[:space:]]*=[[:space:]]*//p' "$WAYPAPER_CONFIG")
         WP_CONF="${WP_CONF/#\~/$HOME}"
         if [ -f "$WP_CONF" ]; then
             CURRENT_WALLPAPER="$WP_CONF"
         fi
+    fi
+    # 4. 使用上次成功生成时记录的壁纸
+    if [ -z "$CURRENT_WALLPAPER" ] && [ -f "$HOME/.cache/.current_wallpaper" ]; then
+        CURRENT_WALLPAPER=$(readlink -f "$HOME/.cache/.current_wallpaper")
     fi
 
     # 立即刷新

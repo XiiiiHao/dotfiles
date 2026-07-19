@@ -23,13 +23,13 @@ binds {
     //Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // 壁纸与主题
-    Mod+Shift+W hotkey-overlay-title="切换壁纸 Change wallpaper" { spawn "waypaper"; }
+    Mod+Shift+W hotkey-overlay-title="DMS壁纸管理 DMS wallpaper manager" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
     //Mod+F10 hotkey-overlay-title="随机切换壁纸 Random wallpaper" { spawn "waypaper" "--random"; }
     Mod+Shift+F10 hotkey-overlay-title="随机下载动漫壁纸 Random download anime wallpaper" { spawn "~/.config/scripts/random-anime-wallpaper.sh"; }
     Mod+Shift+M hotkey-overlay-title="切换颜色策略 Change color strategy" { spawn "~/.config/scripts/matugen-select-type.sh"; }
 
     // 任务栏控制
-    Mod+B hotkey-overlay-title="开关waybar底部任务栏 Toggle waybar bottom bar" { spawn-sh "pgrep -x waybar > /dev/null && (pkill waybar; pkill cava) || waybar -c $HOME/.config/waybar-niri-Win11Like/config.jsonc -s $HOME/.config/waybar-niri-Win11Like/style.css"; }
+    Mod+B hotkey-overlay-title="开关DMS状态栏 Toggle DMS bar" { spawn-sh "dms ipc call bar toggle index 0 || dms run -d"; }
 
     // ╔═══════════════════════════════════════════════════════════════════════╗
     // ║  应用程序启动 Application Launchers                                    ║

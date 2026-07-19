@@ -24,6 +24,9 @@ spawn-at-startup "mako"
 // 任务栏
 // spawn-at-startup "waybar"
 
+// DMS shell
+spawn-at-startup "dms" "run" "-d"
+
 // 输入法
 spawn-at-startup "fcitx5"
 

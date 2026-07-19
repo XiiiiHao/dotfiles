@@ -1,0 +1,19 @@
+return {
+  {
+    "kawre/leetcode.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      lang = "cpp",
+      layout = {
+        position = "left",
+        size = {
+          width = "40%",
+        },
+      },
+    }
+  },
+}

@@ -12,6 +12,7 @@ include "rules.kdl"
 include "output.kdl"
 include "input.kdl"
 include "appearance.kdl"
+include "colors.kdl"
 include "animation.kdl"
 include "startup.kdl"
 

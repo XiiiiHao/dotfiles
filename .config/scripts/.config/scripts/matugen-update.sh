@@ -6,11 +6,19 @@ CACHE_DIR="$HOME/.cache/matugen-strategy"
 TYPE_FILE="$CACHE_DIR/type"
 MODE_FILE="$CACHE_DIR/mode"
 WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
+DMS_SESSION="$HOME/.local/state/DankMaterialShell/session.json"
 
 # --- 1. 获取壁纸路径 ---
 if [ -z "$WALLPAPER" ]; then
+    # DMS owns the active wallpaper in the current desktop setup.
+    if command -v jq &>/dev/null && [ -f "$DMS_SESSION" ]; then
+        DETECTED_WALL=$(jq -r '.wallpaperPath // empty' "$DMS_SESSION")
+        if [ -n "$DETECTED_WALL" ] && [ -f "$DETECTED_WALL" ]; then
+            WALLPAPER="$DETECTED_WALL"
+        fi
+    fi
     # 优先 swww
-    if command -v swww &>/dev/null && pgrep -x "swww-daemon" >/dev/null; then
+    if [ -z "$WALLPAPER" ] && command -v swww &>/dev/null && pgrep -x "swww-daemon" >/dev/null; then
          DETECTED_WALL=$(swww query | head -n 1 | awk -F ': ' '{print $2}' | awk '{print $1}')
          if [ -n "$DETECTED_WALL" ] && [ -f "$DETECTED_WALL" ]; then
             WALLPAPER="$DETECTED_WALL"
@@ -23,6 +31,10 @@ if [ -z "$WALLPAPER" ]; then
         if [ -n "$WP_PATH" ] && [ -f "$WP_PATH" ]; then
             WALLPAPER="$WP_PATH"
         fi
+    fi
+    # 最后使用上次成功生成时记录的壁纸。
+    if [ -z "$WALLPAPER" ] && [ -f "$HOME/.cache/.current_wallpaper" ]; then
+        WALLPAPER=$(readlink -f "$HOME/.cache/.current_wallpaper")
     fi
 fi
 

@@ -19,12 +19,12 @@ window-rule {
     clip-to-geometry true
 
     // 全局透明度
-    opacity 0.8
+    opacity 1.0
 
     // 禁止边框画到背景里
     draw-border-with-background false
     background-effect {
-        blur true
+        blur false
         xray false
     }
 }
@@ -34,14 +34,14 @@ window-rule {
     match app-id="zen-alpha"
     match app-id="zen-browser"
     match app-id="zen"
-    opacity 0.8
+    opacity 1.0
 }
 // kitty
 window-rule {
     match app-id="kitty"
     opacity 1.0
     background-effect {
-        blur true
+        blur false
         xray false
     }
 }
