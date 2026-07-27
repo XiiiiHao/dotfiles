@@ -1,7 +1,7 @@
 // Startup and session UI settings.
 
-// 桌面壁纸的守护进程
-spawn-at-startup "swww-daemon"
+// DMS already owns the wallpaper layer; avoid a second wallpaper daemon at login.
+// spawn-at-startup "swww-daemon"
 
 // 干净版本：先停用 overview 壁纸和随机切换，降低 layer-shell 干扰。
 // spawn-at-startup "swww-daemon" "-n" "overview"
@@ -11,12 +11,18 @@ spawn-at-startup "swww-daemon"
 // 询问管理员权限功能（身份验证）
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
+// X11 compatibility for applications such as WeChat.
+spawn-at-startup "xwayland-satellite"
+
 // 干净版本：先停用自动模糊脚本。
 // spawn-at-startup "~/.config/scripts/niri_auto_blur_bg.sh"
 
 // 干净版本：不在 niri 内手动拉起 portal，避免和会话自带的 dbus/portal 冲突。
 // spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=niri & /usr/lib/xdg-desktop-portal-gnome"
 // spawn-sh-at-startup "systemctl --user set-environment XDG_SESSION_CLASS=user"
+
+// PipeWire is socket-activated by the user session. Restarting it here delays login.
+// spawn-sh-at-startup "systemctl --user restart pipewire.service && systemctl --user restart wireplumber.service pipewire-pulse.service"
 
 // 通知程序
 spawn-at-startup "mako"
@@ -26,9 +32,6 @@ spawn-at-startup "mako"
 
 // DMS shell
 spawn-at-startup "dms" "run" "-d"
-
-// 输入法
-spawn-at-startup "fcitx5"
 
 // 剪贴板守护进程
 spawn-at-startup "clipse" "--listen"

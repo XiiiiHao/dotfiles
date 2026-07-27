@@ -149,8 +149,12 @@
     "vscodevim.vim": 1
   },
   "workbench.preferredDarkColorTheme": "Atom One Dark Pro UI",
-  "window.menuBarVisibility": "compact",
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.editor.tabActionLocation": "right",
-  "workbench.editor.tabActionCloseVisibility": true
+  "workbench.editor.tabActionCloseVisibility": true,
+  "workbench.startupEditor": "none",
+  "workbench.settings.applyToAllProfiles": [
+    
+  ],
+  "extensions.autoUpdate": "off"
 }

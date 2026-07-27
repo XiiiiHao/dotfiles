@@ -68,7 +68,6 @@ window-rule {
     match app-id="be.alexandervanhee.gradia"
     match app-id="org.pulseaudio.pavucontrol" title="音量控制"
     match app-id="org.gnome.clocks" title="时钟"
-    match app-id="fcitx" title="Fcitx5 Input Window"
     match app-id="org.gnome.FileRoller"
     match app-id="thunar" title="文件操作进度"
     match app-id="waypaper"
