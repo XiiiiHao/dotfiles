@@ -1,0 +1,26 @@
+# ============================================================
+# dotfiles 忽略规则
+# 只忽略「运行时生成 / 机器本地 / 私人数据」的文件，
+# 不要在这里忽略真正的配置源文件。
+# ============================================================
+
+# --- zsh ---
+# 补全缓存，与 zsh 版本和本机已装命令相关
+.config/zsh/.config/zsh/.zcompdump
+.config/zsh/.config/zsh/.zcompdump-*
+# 命令历史，私人内容
+.config/zsh/.config/zsh/.zsh_history
+.config/zsh/.config/zsh/.zsh_history.*
+
+# --- clipse ---
+# 剪贴板历史，含私人内容（网址、IP、口令等）
+.config/clipse/.config/clipse/clipboard_history.json
+
+# --- fcitx5 ---
+# 配置写入时的原子临时文件
+.config/fcitx5/.config/fcitx5/profile_*
+
+# --- 手工备份文件 ---
+*.before-static-colors
+*.bak
+*~
