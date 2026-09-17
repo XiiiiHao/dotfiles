@@ -33,7 +33,7 @@ alias \
 
 # Colorize commands when possible.
 alias \
-	ls="ls -hN --color=auto --group-directories-first" \
+	ls="eza --git --group-directories-first --icons=auto" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \

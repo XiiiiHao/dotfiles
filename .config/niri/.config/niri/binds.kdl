@@ -15,7 +15,6 @@ binds {
     // ╚═══════════════════════════════════════════════════════════════════════╝
 
     Mod+Shift+Slash hotkey-overlay-title="快捷键教程 Keybind tutorial" { show-hotkey-overlay; }
-    Mod+Tab hotkey-overlay-title="切换总览界面 toggle overview" repeat=false { toggle-overview; }
     Mod+Delete hotkey-overlay-title="退出niri Quit niri" { quit; }
     Mod+Shift+Backspace hotkey-overlay-title="电源菜单 Powermenu" { spawn "wlogout"; }
     //Mod+Alt+P hotkey-overlay-title="关闭显示器 Turn off monitors" { spawn-sh "niri msg action power-off-monitors && swaylock"; }
@@ -43,7 +42,7 @@ binds {
     Mod+E hotkey-overlay-title="文档管理器 Filemanager" { spawn "kitty" "-e" "yazi"; }
     Mod+Shift+E hotkey-overlay-title="文档管理器" { spawn-sh "env GSK_RENDERER=gl GTK_IM_MODULE=fcitx nautilus"; }
     //Mod+Shift+C hotkey-overlay-title="选取屏幕颜色 Pick color" { spawn-sh "hyprpicker | wl-copy"; }
-    Mod+SHift+V hotkey-overlay-title="剪贴板 Clipboard" { spawn-sh "copyq toggle || clipse-gui || kitty --class clipse -o font_size=13 -o \"modify_font cell_height 90%\" -e clipse"; }
+    Mod+Shift+V hotkey-overlay-title="剪贴板 Clipboard" { spawn-sh "dms ipc call clipboard toggle || dms run -d"; }
 
     // ╔═══════════════════════════════════════════════════════════════════════╗
     // ║  Quickshell                                                          ║
@@ -86,8 +85,8 @@ binds {
     // Mod+Shift+方向键/HJKL = 跨显示器切换
     // Mod+Shift+Ctrl+方向键/HJKL = 跨显示器移动窗口
     
-    // Alt+Tab 切换到上一个窗口（类似传统桌面环境）
-    Alt+Tab hotkey-overlay-title="切换到上一个窗口 Switch to previous window" { focus-window-previous; }
+    // Mod+Tab 切回上一个聚焦窗口；Alt+Tab 暂不绑定。
+    Mod+Tab hotkey-overlay-title="切换到上一个窗口 Switch to previous window" repeat=false { focus-window-previous; }
     
     // 在当前工作区内切换聚焦（箭头键）
     Mod+Left { focus-column-left; }
@@ -101,9 +100,12 @@ binds {
     Mod+K { focus-window-up; }
     Mod+L { focus-column-right; }
 
-    // 鼠标侧键切换聚焦
-    Mod+MouseForward { focus-window-up; }
-    Mod+MouseBack { focus-window-down; }
+    // 单按前侧键切换总览；后侧键不绑定，保留应用原生后退。
+    MouseForward hotkey-overlay-title="鼠标前侧键：切换总览" repeat=false { toggle-overview; }
+
+    // Mod + 鼠标侧键切换工作区：前进到下一个，后退到上一个。
+    Mod+MouseForward hotkey-overlay-title="下一个工作区" repeat=false { focus-workspace-down; }
+    Mod+MouseBack hotkey-overlay-title="上一个工作区" repeat=false { focus-workspace-up; }
 
     // ╔═══════════════════════════════════════════════════════════════════════╗
     // ║  窗口移动 Window Movement                                              ║

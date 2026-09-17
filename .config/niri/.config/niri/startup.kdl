@@ -36,8 +36,8 @@ spawn-at-startup "dms" "run" "-d"
 // 剪贴板守护进程
 spawn-at-startup "clipse" "--listen"
 
-// wayland -> x11 剪贴板同步
-spawn-at-startup "wl-paste" "--watch" "xclip" "-selection" "clipboard"
+// wayland -> x11 剪贴板同步（保留图片 MIME 类型，供 XWayland 应用使用）
+spawn-at-startup "~/.local/bin/clipsync-w2x"
 
 // x11 -> wayland 剪贴板同步
 spawn-at-startup "~/.local/bin/clipsync-x2w"

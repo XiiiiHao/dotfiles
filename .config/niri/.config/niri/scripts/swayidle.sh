@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
 
-# 5分钟锁屏，10分钟熄屏，20分钟休眠
-exec swayidle -w \
-timeout 600  'swaylock &' \
-timeout 900  'niri msg action power-off-monitors' \
-resume       'niri msg action power-on-monitors' \
-timeout 1800 'systemctl suspend'
+# 已禁用自动锁屏、熄屏和空闲挂起，避免中断数据传输。
+exit 0

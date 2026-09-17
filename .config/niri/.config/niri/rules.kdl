@@ -38,8 +38,18 @@ window-rule {
 }
 // kitty
 window-rule {
-    match app-id="kitty"
+    match app-id="^kitty$"
     opacity 1.0
+    focus-ring {
+        off
+    }
+    border {
+        on
+        width 2
+        active-color "#85809e"
+        inactive-color "#4b4d5c"
+        urgent-color "#ed8796"
+    }
     background-effect {
         blur false
         xray false
