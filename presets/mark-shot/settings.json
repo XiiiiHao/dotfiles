@@ -1,0 +1,129 @@
+{
+  "annotation": {
+    "defaultColor": "#FF4D4D",
+    "defaultTool": "move",
+    "fileDefaultTool": "move",
+    "fullscreenDefaultTool": "move"
+  },
+  "captureHistory": {
+    "enabled": true,
+    "limit": 50
+  },
+  "clipboard": {
+    "image": {
+      "mode": "image/png",
+      "thresholdM": 4
+    }
+  },
+  "export": {
+    "imageFrame": {
+      "cornerRadius": 18,
+      "enabled": false,
+      "padding": 112,
+      "shadowOffsetY": 28,
+      "shadowOpacity": 0.32,
+      "shadowRadius": 72
+    }
+  },
+  "globalHotkeys": {
+    "capture": "Ctrl+Alt+S",
+    "enabled": true,
+    "fullscreen": ""
+  },
+  "ocrResultWindow": {
+    "alwaysOnTop": false
+  },
+  "pinnedWindow": {
+    "alwaysOnTop": true,
+    "autoOcr": false,
+    "border": true,
+    "borderColor": "#5EEAD4",
+    "borderEnabled": true,
+    "borderWidth": 2,
+    "textSelectionCopyEnabled": true
+  },
+  "save": {
+    "pathTemplate": "{pictures}/mark-shot/mark-shot-{datetime}.png"
+  },
+  "scrollCapture": {
+    "frame": 5,
+    "frameEnabled": true,
+    "frameGap": 5,
+    "hidePreviewDuringCapture": false,
+    "previewGap": 5
+  },
+  "shortcuts": {
+    "actions": {
+      "cancel": "Esc",
+      "clear": "",
+      "copy": "Ctrl+C",
+      "extensions": "",
+      "ocrCopy": "",
+      "openWith": "",
+      "pin": "Ctrl+P",
+      "redo": "Ctrl+Y",
+      "save": "Ctrl+S",
+      "scrollCapture": "",
+      "settings": "",
+      "toggleCaptureScope": "F",
+      "toggleToolbarLayout": "",
+      "undo": "Ctrl+Z",
+      "upload": "Ctrl+U"
+    },
+    "startup": {
+      "codeScanner": "Q",
+      "colorPicker": "C",
+      "displayCapture": "D",
+      "gifRecorder": "G",
+      "ruler": "R",
+      "videoRecorder": "V"
+    },
+    "tools": {
+      "arrow": "A",
+      "ellipse": "E",
+      "highlighter": "H",
+      "laser": "G",
+      "line": "L",
+      "magnifier": "Z",
+      "mosaic": "M",
+      "move": "V",
+      "number": "N",
+      "pen": "P",
+      "rectangle": "R",
+      "select": "S",
+      "text": "T"
+    }
+  },
+  "toolbar": {
+    "fontSize": 11,
+    "iconSize": 22
+  },
+  "ui": {
+    "language": "chinese",
+    "theme": "system"
+  },
+  "windows": {
+    "hotkeys": {
+      "capture": "Ctrl+Alt+S",
+      "enabled": true,
+      "fullscreen": ""
+    },
+    "tray": {
+      "autoStart": false,
+      "enabled": false
+    }
+  },
+  "capture": {
+    "doubleClickAction": "copy",
+    "freezeScope": "all-screens",
+    "hideOwnWindows": true,
+    "includeCursor": false,
+    "selectionLoupe": {
+      "enabled": false
+    }
+  },
+  "windowDetection": {
+    "enabled": true,
+    "timeoutMs": 1000
+  }
+}
