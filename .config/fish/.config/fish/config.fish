@@ -3,6 +3,7 @@ if status is-interactive
 end
 set fish_greeting ""
 set -p PATH ~/.local/bin
+set -gx STARSHIP_CONFIG "$HOME/.config/starship/kitty-reference.toml"
 starship init fish | source
 zoxide init fish --cmd cd | source
 

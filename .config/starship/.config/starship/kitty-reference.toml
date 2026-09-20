@@ -1,0 +1,21 @@
+# Minimal two-line prompt using the terminal's ANSI palette.
+add_newline = false
+format = "$directory[\uf06d](purple)$line_break$character"
+
+[directory]
+style = "blue"
+format = "[$path]($style) "
+truncation_length = 3
+truncation_symbol = ".../"
+truncate_to_repo = false
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[\u276f](green)"
+error_symbol = "[\u276f](red)"
+vimcmd_symbol = "[\u276e](green)"
+vimcmd_replace_one_symbol = "[\u276e](purple)"
+vimcmd_replace_symbol = "[\u276e](purple)"
+vimcmd_visual_symbol = "[\u276e](yellow)"
