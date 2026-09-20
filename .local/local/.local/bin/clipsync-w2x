@@ -1,0 +1,20 @@
+#!/bin/sh
+
+sync_clipboard() {
+    types=$(wl-paste --list-types 2>/dev/null) || exit 0
+
+    if printf '%s\n' "$types" | grep -qx 'image/png'; then
+        wl-paste --type image/png | xclip -selection clipboard -target image/png -in
+        exit
+    fi
+
+    if printf '%s\n' "$types" | grep -Eqx 'text/plain;charset=utf-8|text/plain|UTF8_STRING'; then
+        wl-paste --no-newline | xclip -selection clipboard -target UTF8_STRING -in
+    fi
+}
+
+if [ "$1" = "--sync" ]; then
+    sync_clipboard
+else
+    exec wl-paste --watch "$0" --sync
+fi
