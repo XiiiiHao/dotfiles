@@ -239,19 +239,16 @@ binds {
     // ║  截图 Screenshots                                                      ║
     // ╚═══════════════════════════════════════════════════════════════════════╝
 
-    // 区域截图
-    Mod+P hotkey-overlay-title="选取区域截图 Select screenshot" { screenshot; }
-    Print { screenshot; }
+    // Mark Shot：拖动选区后直接标注；--capture 确保托盘模式下也触发截图。
+    Mod+P hotkey-overlay-title="区域截图与标注 Mark Shot" repeat=false { spawn "mark-shot" "--capture"; }
+    Print repeat=false { spawn "mark-shot" "--capture"; }
 
-    // 窗口截图
-    Mod+Shift+P hotkey-overlay-title="截取聚焦窗口 Focus-window screenshot" { screenshot-window; }
-    Ctrl+Print { screenshot-window; }
+    // 窗口截图：进入选区界面后，悬停目标窗口并单击选中。
+    Mod+Shift+P hotkey-overlay-title="点选窗口截图 Mark Shot" repeat=false { spawn "mark-shot" "--capture"; }
+    Ctrl+Print repeat=false { spawn "mark-shot" "--capture"; }
 
-    // 显示器截图
-    Mod+Ctrl+Shift+P hotkey-overlay-title="截取显示器 Monitor screenshot" { screenshot-screen; }
-    Shift+Print { screenshot-screen; }
-
-    // 截图编辑
-    //Mod+Shift+S hotkey-overlay-title="截图后按下此键进行编辑 Edit the image after screenshot" { spawn-sh "wl-paste | satty -f -"; }
+    // 整屏截图：跳过选区，使用选择工具进行标注（覆盖默认的激光笔工具）。
+    Mod+Ctrl+Shift+P hotkey-overlay-title="整屏截图与标注 Mark Shot" repeat=false { spawn "mark-shot" "--capture" "--fullscreen" "--fullscreen-default-tool" "select"; }
+    Shift+Print repeat=false { spawn "mark-shot" "--capture" "--fullscreen" "--fullscreen-default-tool" "select"; }
 
 }
