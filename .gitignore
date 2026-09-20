@@ -24,3 +24,16 @@
 *.before-static-colors
 *.bak
 *~
+
+# 已归档的旧配置副本
+.config/nvim.pre-current-backup-20260712-1115/
+.config/waybar-niri-Win11Like/.config/waybar-niri-Win11Like/style.css.backup
+
+# Fcitx5 自动缓存与个人学习数据（单独私人备份）
+.config/fcitx5/.config/fcitx5/conf/cached_layouts
+.local/local/.local/share/fcitx5/pinyin/user.dict
+.local/local/.local/share/fcitx5/pinyin/user.history
+
+# 图标索引缓存与文件管理器窗口状态
+.local/local/.local/share/icons/breeze_cursors/icon-theme.cache
+.config/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
