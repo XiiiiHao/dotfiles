@@ -1,0 +1,16 @@
+{
+  "editor.fontSize": 16,
+  "editor.mouseWheelZoom": true,
+  "window.zoomLevel": 2,
+  "workbench.colorTheme": "wallbash",
+  "window.autoDetectColorScheme": true,
+  "terminal.integrated.defaultLocation": "editor",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "workbench.preferredDarkColorTheme": "Cursor Light",
+  "workbench.iconTheme": "catppuccin-latte",
+  "extensions.autoUpdate": false,
+  "makefile.configureOnOpen": true,
+  "git.openRepositoryInParentFolders": "always",
+  "git.suggestSmartCommit": false,
+  "git.autofetch": true
+}

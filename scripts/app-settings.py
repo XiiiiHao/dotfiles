@@ -9,7 +9,8 @@ import shutil
 import tempfile
 
 REPO = Path(__file__).resolve().parent.parent
-APPS = {"dms": "DankMaterialShell/settings.json", "mark-shot": "mark-shot/config.json"}
+APPS = {"dms": "DankMaterialShell/settings.json", "mark-shot": "mark-shot/config.json",
+        "cursor": "Cursor/User/settings.json"}
 BLOCKED = {"apikey", "api_key", "token", "password", "secret", "env", "command",
            "selectionhistory", "screenpreferences", "latitude", "longitude"}
 
