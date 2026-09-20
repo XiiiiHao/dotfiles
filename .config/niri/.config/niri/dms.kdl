@@ -1,0 +1,29 @@
+// 手写的 DankMaterialShell 接入配置。
+// dms/ 下的生成文件由 DMS 维护，请勿在其中添加个人配置。
+// 在 config.kdl 中注释 include "dms.kdl" 可停用 niri 侧的 DMS 接入。
+// 重载不会终止已运行的 DMS，也不会自动启用替代壁纸或状态栏。
+// Matugen 脚本读取 DMS 壁纸状态的间接依赖仍保留在脚本中。
+
+// 启动 DMS。
+// 当前桌面由 DMS 提供壁纸，不同时启动其它壁纸守护进程。
+spawn-at-startup "dms" "run" "-d"
+
+// DMS 专用快捷键。
+binds {
+    Mod+Shift+W hotkey-overlay-title="DMS壁纸管理 DMS wallpaper manager" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
+    Mod+B hotkey-overlay-title="开关DMS状态栏 Toggle DMS bar" { spawn-sh "dms ipc call bar toggle index 0 || dms run -d"; }
+    Mod+Shift+V hotkey-overlay-title="剪贴板 Clipboard" { spawn-sh "dms ipc call clipboard toggle || dms run -d"; }
+}
+
+// 当前启用的 DMS 生成配置。
+include "dms/wpblur.kdl"
+
+// 以下配置目前未启用，保留现有行为。
+// include "dms/colors.kdl"
+// include "dms/layout.kdl"
+// include "dms/input.kdl"
+// include "dms/outputs.kdl"
+// include "dms/windowrules.kdl"
+// include "dms/alttab.kdl"
+// include "dms/binds.kdl"
+// include "dms/cursor.kdl"

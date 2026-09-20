@@ -1,6 +1,6 @@
 // Startup and session UI settings.
 
-// DMS already owns the wallpaper layer; avoid a second wallpaper daemon at login.
+// 可选壁纸守护进程，当前未启用。
 // spawn-at-startup "swww-daemon"
 
 // 干净版本：先停用 overview 壁纸和随机切换，降低 layer-shell 干扰。
@@ -29,9 +29,6 @@ spawn-at-startup "mako"
 
 // 任务栏
 // spawn-at-startup "waybar"
-
-// DMS shell
-spawn-at-startup "dms" "run" "-d"
 
 // 剪贴板守护进程
 spawn-at-startup "clipse" "--listen"

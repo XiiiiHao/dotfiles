@@ -15,7 +15,8 @@ include "appearance.kdl"
 include "colors.kdl"
 include "animation.kdl"
 include "startup.kdl"
-include "dms/wpblur.kdl"
+// DMS 接入：启动、快捷键与生成配置引用。
+include "dms.kdl"
 
 // 截图保存位置
 screenshot-path "~/Pictures/Screenshots/Niri-screenshots/%Y-%m-%d %H-%M-%S.png"
