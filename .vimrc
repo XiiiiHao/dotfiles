@@ -27,6 +27,52 @@ set undofile
 silent !mkdir -p ~/.cache/vim/undo
 set undodir=~/.cache/vim/undo
 
+" === Wayland 剪贴板：支持 +clipboard_provider 的 Vim 无需 +clipboard ===
+if has('clipboard_provider') && exists('&clipmethod')
+    let s:clipboard_cache = {}
+
+    function! s:ClipboardAvailable() abort
+        return !empty($WAYLAND_DISPLAY) && executable('wl-copy') && executable('wl-paste')
+    endfunction
+
+    function! s:ClipboardCopy(reg, type, lines) abort
+        let l:text = join(a:lines, "\n") . (a:type ==# 'V' ? "\n" : '')
+        let l:primary = a:reg ==# '*' ? ' --primary' : ''
+        call system('wl-copy --type ' . shellescape('text/plain;charset=utf-8') . l:primary, l:text)
+        if v:shell_error
+            throw 'Wayland clipboard: wl-copy 写入失败'
+        endif
+        " 同一 Vim 内保留按行/矩形选区类型，外部程序仍收到普通文本。
+        let s:clipboard_cache[a:reg] = [l:text, a:type]
+    endfunction
+
+    function! s:ClipboardPaste(reg) abort
+        let l:primary = a:reg ==# '*' ? ' --primary' : ''
+        let l:text = system('wl-paste --no-newline --type text' . l:primary)
+        if v:shell_error
+            throw 'Wayland clipboard: 无法读取剪贴板文本'
+        endif
+        let l:cached = get(s:clipboard_cache, a:reg, [])
+        let l:type = !empty(l:cached) && l:cached[0] ==# l:text
+                    \ ? l:cached[1] : (l:text =~# "\n$" ? 'V' : 'v')
+        let l:lines = split(l:text, "\n", 1)
+        if l:type ==# 'V'
+            call remove(l:lines, -1)
+        endif
+        return [l:type, l:lines]
+    endfunction
+
+    let v:clipproviders['wl_clipboard'] = {
+                \ 'available': function('s:ClipboardAvailable'),
+                \ 'copy': {'+': function('s:ClipboardCopy'), '*': function('s:ClipboardCopy')},
+                \ 'paste': {'+': function('s:ClipboardPaste'), '*': function('s:ClipboardPaste')},
+                \ }
+    " 优先使用 Wayland 工具；其他会话继续尝试 Vim 原有的后端。
+    if index(split(&clipmethod, ','), 'wl_clipboard') < 0
+        set clipmethod^=wl_clipboard
+    endif
+endif
+
 " === 将 y (yank 复制) 映射到系统剪贴板 (+ 寄存器) ===
 nnoremap y "+y
 vnoremap y "+y

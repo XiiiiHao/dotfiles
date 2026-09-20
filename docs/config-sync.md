@@ -50,13 +50,14 @@ sh scripts/setup-audio-services.sh
 | 配置部署、偏好合并 | GNU Stow、Python 3（合并工具仅用标准库） |
 | Zsh / Fish 提示符 | 对应 shell、Starship；唯一主题为 `kitty-reference.toml` |
 | Wayland → X11 剪贴板同步 | `wl-clipboard`、`xclip`、`clipsync-w2x` |
+| Vim 系统剪贴板 | 支持 `+clipboard_provider` 的 Vim、Wayland 会话、`wl-clipboard` |
 | Niri 截图快捷键 | `mark-shot`；窗口截图需要在界面中点选，整屏直接进入标注 |
 | DMS / Matugen 主题 | DMS、Matugen 及各模板依赖；壁纸与状态另行管理 |
 | Rime 自定义输入方案 | 雾凇、万象语法模型、LLM 插件，详见 Rime 说明 |
 | Git LFS 仓库 | `git-lfs`；当前普通 Git 可用，本机未安装 LFS 命令 |
 | Kitty / Cursor 外观 | 设置中指定的字体、主题和图标扩展需另行安装 |
 
-Vim 仍使用现有配置，本机 `/usr/bin/vim` 为 `-clipboard` 构建，系统剪贴板映射的功能限制尚未处理。
+本机 Vim 虽为 `-clipboard` 构建，但支持 `+clipboard_provider`。`.vimrc` 已通过 `wl-copy` / `wl-paste` 接通 `"+`（系统剪贴板）和 `"*`（主选区）寄存器：`y`/`yy` 复制、`x` 剪切、`p`/`P` 粘贴继续沿用原有映射；插入模式可用 `Ctrl+R` 后按 `+` 粘贴。支持中文、多行文本，并保留同一 Vim 内复制的行/矩形选区类型。外部文本以末尾换行判断按行粘贴；读取非文本剪贴板会明确报错。修改后重新打开 Vim 即可生效，终端自身的 `Ctrl+Shift+V` 也可照常使用。其他机器若没有 provider 功能或 Wayland 工具，需要使用当地可用的原生剪贴板后端。
 
 ## 不纳入普通配置同步的内容
 
