@@ -1,6 +1,8 @@
 import importlib.util
 from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
 SPEC = importlib.util.spec_from_file_location(
     "app_settings", Path(__file__).resolve().parents[1] / "scripts/app-settings.py"
@@ -52,6 +54,24 @@ class AppSettingsTests(unittest.TestCase):
         for key in ["apiKey", "env", "command", "screenPreferences", "selectionHistory"]:
             with self.subTest(key=key), self.assertRaises(ValueError):
                 settings.validate({"widgets": [{key: "local-only"}]})
+
+    def test_apply_refuses_configuration_in_symlinked_directory(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            target = root / "repository-config"
+            target.mkdir()
+            original = target / "settings.json"
+            original.write_text("{}\n")
+            config = root / "config"
+            config.mkdir()
+            (config / "DankMaterialShell").symlink_to(target, target_is_directory=True)
+            with patch.dict("os.environ", {"XDG_CONFIG_HOME": str(config),
+                                           "XDG_STATE_HOME": str(root / "state")}), \
+                    patch("sys.argv", ["app-settings.py", "apply", "dms"]):
+                with self.assertRaisesRegex(ValueError, "软链接"):
+                    settings.main()
+            self.assertEqual(original.read_text(), "{}\n")
+            self.assertFalse((root / "state").exists())
 
     def test_presets_can_bootstrap_new_machine(self):
         preset = {"barConfigs": [{"id": "default", "position": 0}], "fontScale": 1.15}

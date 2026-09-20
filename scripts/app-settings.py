@@ -107,8 +107,8 @@ def main():
     if current == merged:
         print("已同步，无需写入")
         return
-    if local.is_symlink():
-        raise ValueError("应用偏好使用合并部署；请先检查配置软链接，避免写入未知目标")
+    if local.is_symlink() or local.resolve() != local.absolute():
+        raise ValueError("应用配置或其父目录经过软链接；请先检查部署方式，避免覆盖链接目标")
     before = local.read_bytes() if local.exists() else None
     if before is not None:
         state_home = Path(os.environ.get("XDG_STATE_HOME", str(Path.home() / ".local/state")))
