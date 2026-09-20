@@ -62,5 +62,6 @@ application/wps-office.docx=wps-office-prometheus.desktop;
 application/wps-office.dotx=wps-office-prometheus.desktop;
 application/wps-office.wpss=wps-office-prometheus.desktop;
 application/wps-office.wpso=wps-office-prometheus.desktop;
+application/pdf=zen-browser.desktop;
 
 [Removed Associations]
