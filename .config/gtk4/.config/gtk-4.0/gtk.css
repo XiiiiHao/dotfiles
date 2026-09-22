@@ -1,3 +1,4 @@
+@import url("dank-colors.css");
 
 /* GTK NAMED COLORS ---------------- use responsibly! */
 @define-color destructive_bg_color @red_4;
