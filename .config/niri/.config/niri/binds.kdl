@@ -236,11 +236,11 @@ binds {
     Mod+P hotkey-overlay-title="区域截图与标注 Mark Shot" repeat=false { spawn "mark-shot" "--capture"; }
     Print repeat=false { spawn "mark-shot" "--capture"; }
 
-    // 窗口截图：进入选区界面后，悬停目标窗口并单击选中。
-    Mod+Shift+P hotkey-overlay-title="点选窗口截图 Mark Shot" repeat=false { spawn "mark-shot" "--capture"; }
+    // 手动选区截图：已关闭窗口自动检测，拖动选择截图范围。
     Ctrl+Print repeat=false { spawn "mark-shot" "--capture"; }
 
     // 整屏截图：跳过选区，使用选择工具进行标注（覆盖默认的激光笔工具）。
+    Mod+Shift+P hotkey-overlay-title="整屏截图与标注 Mark Shot" repeat=false { spawn "mark-shot" "--capture" "--fullscreen" "--fullscreen-default-tool" "select"; }
     Mod+Ctrl+Shift+P hotkey-overlay-title="整屏截图与标注 Mark Shot" repeat=false { spawn "mark-shot" "--capture" "--fullscreen" "--fullscreen-default-tool" "select"; }
     Shift+Print repeat=false { spawn "mark-shot" "--capture" "--fullscreen" "--fullscreen-default-tool" "select"; }
 

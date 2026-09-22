@@ -51,7 +51,7 @@ sh scripts/setup-audio-services.sh
 | Zsh / Fish 提示符 | 对应 shell、Starship；唯一主题为 `kitty-reference.toml` |
 | Wayland → X11 剪贴板同步 | `wl-clipboard`、`xclip`、`clipsync-w2x` |
 | Vim 系统剪贴板 | 支持 `+clipboard_provider` 的 Vim、Wayland 会话、`wl-clipboard` |
-| Niri 截图快捷键 | `mark-shot`；窗口截图需要在界面中点选，整屏直接进入标注 |
+| Niri 截图快捷键 | `mark-shot`；Print / Ctrl+Print 手动拖动选区，Mod+Shift+P 整屏直接进入标注；关闭窗口自动检测 |
 | DMS / Matugen 主题 | DMS、Matugen 及各模板依赖；壁纸与状态另行管理 |
 | Rime 自定义输入方案 | 雾凇、万象语法模型、LLM 插件，详见 Rime 说明 |
 | Git LFS 仓库 | `git-lfs`；当前普通 Git 可用，本机未安装 LFS 命令 |
