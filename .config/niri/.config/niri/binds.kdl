@@ -40,13 +40,6 @@ binds {
     //Mod+Shift+C hotkey-overlay-title="选取屏幕颜色 Pick color" { spawn-sh "hyprpicker | wl-copy"; }
 
     // ╔═══════════════════════════════════════════════════════════════════════╗
-    // ║  Quickshell                                                          ║
-    // ╚═══════════════════════════════════════════════════════════════════════╝
-    
-    //Mod+M { spawn "sh" "-c" "echo 'dashboard' > /tmp/qs_launcher.pipe"; }
-    //Mod+B hotkey-overlay-title="开关quickshell状态栏 Toggle quickshell bar" { spawn-sh "pgrep qs > /dev/null && pkill qs || qs -c ~/.config/quickshell &"; }
-    
-    // ╔═══════════════════════════════════════════════════════════════════════╗
     // ║  音量与亮度控制 Volume & Brightness Control                            ║
     // ╚═══════════════════════════════════════════════════════════════════════╝
 

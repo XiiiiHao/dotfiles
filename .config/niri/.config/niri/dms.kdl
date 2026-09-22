@@ -11,8 +11,8 @@ spawn-at-startup "dms" "run" "-d"
 // DMS 专用快捷键。
 binds {
     Mod+Shift+W hotkey-overlay-title="DMS壁纸管理 DMS wallpaper manager" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
-    Mod+B hotkey-overlay-title="开关DMS状态栏 Toggle DMS bar" { spawn-sh "dms ipc call bar toggle index 0 || dms run -d"; }
-    Mod+Shift+V hotkey-overlay-title="剪贴板 Clipboard" { spawn-sh "dms ipc call clipboard toggle || dms run -d"; }
+    Mod+B hotkey-overlay-title="开关DMS状态栏 Toggle DMS bar" { spawn "dms" "ipc" "call" "bar" "toggle" "index" "0"; }
+    Mod+Shift+V hotkey-overlay-title="剪贴板 Clipboard" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
 }
 
 // 当前启用的 DMS 生成配置。

@@ -48,9 +48,6 @@ spawn-at-startup "swayosd-server"
 // alt+tab 切换器（第三方，无缩略图显示）
 // spawn-at-startup "niriswitcher"
 
-// 干净版本：先停用 quickshell，排除额外 layer-shell/QML 影响。
-// spawn-sh-at-startup "qs -c ~/.config/quickshell"
-
 // 取消启动 niri 时自动开启快捷键教程
 hotkey-overlay {
     skip-at-startup

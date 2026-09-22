@@ -87,4 +87,4 @@ niri validate -c "$HOME/.config/niri/config.kdl"
 
 本轮操作前的文件保存在 `~/.local/state/dotfiles-backups/sync-maintenance-foo9ygiw/`。`removed-links.json` 记录已移除失效链接的旧目标；`untracked-files.json` 保存停止跟踪时的 SHA-256；`files/` 按 HOME 相对路径保存原文件和链接。备份目录不进入 Git。
 
-仓库同时出现的 DMS/Clavis/Quickshell 切换工作另行保留。若该部署将整个 DMS 目录链接进仓库，本轮偏好工具可以检查/导出，但有差异时拒绝通过软链接执行合并；应先明确采用哪一种部署方式。
+当前部署将整个 DMS 目录链接进仓库。偏好工具可以检查/导出，但有差异时拒绝通过软链接执行合并；使用前应明确采用哪一种部署方式。

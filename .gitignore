@@ -4,6 +4,13 @@
 # 不要在这里忽略真正的配置源文件。
 # ============================================================
 
+# --- Desktop shells ---
+# DMS 自动生成的主题、版本标记和下载的插件；保留 settings.json / clsettings.json。
+.config/DankMaterialShell/.config/DankMaterialShell/*.css
+.config/DankMaterialShell/.config/DankMaterialShell/.changelog-*
+.config/DankMaterialShell/.config/DankMaterialShell/.firstlaunch
+.config/DankMaterialShell/.config/DankMaterialShell/plugins/
+
 # --- zsh ---
 # 补全缓存，与 zsh 版本和本机已装命令相关
 .config/zsh/.config/zsh/.zcompdump
