@@ -33,6 +33,7 @@
 # --- fcitx5 ---
 # 配置写入时的原子临时文件
 .config/fcitx5/.config/fcitx5/profile_*
+.config/fcitx5/.config/fcitx5/conf/notifications.conf_*
 
 # --- 手工备份文件 ---
 *.before-static-colors
