@@ -3,6 +3,7 @@
   "currentThemeCategory": "dynamic",
   "matugenScheme": "scheme-content",
   "cornerRadius": 12,
+  "firstDayOfWeek": 1,
   "showSeconds": true,
   "barElevationEnabled": false,
   "blurEnabled": true,
