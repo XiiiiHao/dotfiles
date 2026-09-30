@@ -156,5 +156,5 @@
   "workbench.settings.applyToAllProfiles": [
     
   ],
-  "extensions.autoUpdate": "off"
+  "extensions.autoUpdate": false
 }
