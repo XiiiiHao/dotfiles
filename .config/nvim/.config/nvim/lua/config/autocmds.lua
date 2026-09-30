@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("associate_filetype"),
+  group = augroup("python_filetype"),
   pattern = { "python" },
   callback = function()
     vim.opt_local.shiftwidth = 4
@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("associate_filetype"),
+  group = augroup("c_filetype"),
   pattern = { "c", "cpp" },
   callback = function()
     vim.opt_local.shiftwidth = 2

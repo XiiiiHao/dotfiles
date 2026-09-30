@@ -126,7 +126,8 @@
 
 - 使用 `nvim-lspconfig`。
 - 使用 `mason.nvim` 管理外部工具。
-- 使用 `mason-lspconfig.nvim` 自动安装和配置 LSP。
+- Mason 插件使用 `mason-org` 仓库；`mason-lspconfig.nvim` 只扩展安装列表，由 LazyVim 统一调用 setup，避免覆盖自动启用和排除规则。
+- LSP 按键通过 `servers["*"].keys` 配置，不再调用已弃用的 keymaps.get()。
 - 默认安装：
   - `lua-language-server`
   - `pyright`
@@ -157,17 +158,12 @@
 
 ## 补全
 
-- 使用 `nvim-cmp`。
-- 补全源包括：
-  - LSP
-  - LuaSnip
-  - path
-  - buffer
-- 补全性能优化：
-  - 降低 debounce / throttle
-  - 限制补全项数量
-  - 大文件中禁用补全
-  - 注释和字符串中禁用补全
+- 当前 LazyVim 实际启用的是 `blink.cmp`；个人设置在 `lua/plugins/blink.lua`。
+- `nvim-cmp.lua` 和 `cmp-performance.lua` 是保留的旧配置，当前不生效；不要同时启用两套补全引擎。
+- 补全源包括 LSP、LuaSnip、path、buffer，以及 LazyVim 语言扩展提供的源。
+- 列表最多显示 20 项；片段最多 5 项，路径和 buffer 各最多 8 项。
+- 普通补全至少输入 2 个字符，buffer 至少 3 个字符；路径不限制字符数。
+- 不再使用旧 nvim-cmp 的 debounce/throttle 或注释、字符串禁用规则。
 - 不自动预选补全项。
 - `<C-n>` 或 `<C-,>` 手动触发补全。
 - `<C-j>` / `<C-k>` 选择补全项。
@@ -265,6 +261,7 @@
 - Markdown 和 git commit 中关闭 spell。
 - Python 文件缩进宽度为 4。
 - C / C++ 文件缩进宽度为 2。
+- 两组 FileType 自动命令使用不同的 augroup，避免后注册的一组清除 Python 设置。
 - Python、C、C++ 中移除 `formatoptions` 的 `o`，避免用 `o` 新开一行时自动延续注释。
 - InsertLeave 时自动解除 LuaSnip 当前 snippet。
 - InsertLeave 时如果系统存在 `fcitx5-remote`，自动切换到英文输入法。
