@@ -73,8 +73,8 @@ binds {
     // Mod+Shift+方向键/HJKL = 跨显示器切换
     // Mod+Shift+Ctrl+方向键/HJKL = 跨显示器移动窗口
     
-    // Mod+Tab 切回上一个聚焦窗口；Alt+Tab 暂不绑定。
-    Mod+Tab hotkey-overlay-title="切换到上一个窗口 Switch to previous window" repeat=false { focus-window-previous; }
+    // Mod+Tab 切换总览；Alt+Tab 暂不绑定。
+    Mod+Tab hotkey-overlay-title="切换总览 Toggle overview" repeat=false { toggle-overview; }
     
     // 在当前工作区内切换聚焦（箭头键）
     Mod+Left { focus-column-left; }
