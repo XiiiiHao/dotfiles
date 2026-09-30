@@ -7,6 +7,7 @@
 | 实际路径 | 仓库来源 / 部署方式 |
 | --- | --- |
 | `~/.bashrc`、`~/.bash_profile`、`~/.vimrc`、`~/.gitconfig` | 仓库根目录的同名文件，逐文件软链接 |
+| `~/.ssh/config` | `ssh/.ssh/config`，逐文件软链接；私有配置留在 `~/.ssh/config.local` |
 | `~/.zshenv` | `.config/zsh/.zshenv` |
 | `~/.config/starship/kitty-reference.toml` | `.config/starship` 包；Zsh 和 Fish 使用同一主题 |
 | `~/.local/bin/clipsync-w2x` | `.local/local` 包 |
@@ -24,12 +25,24 @@ GNU Stow 的 `--simulate` 只预览链接操作。以下示例需要在仓库根
 ```sh
 stow --simulate --verbose --no-folding --dir=.config --target="$HOME" zsh starship fish uv cursor
 stow --simulate --verbose --no-folding --dir=.local --target="$HOME" local
-stow --simulate --verbose --no-folding --dir=. --target="$HOME" pi
+stow --simulate --verbose --no-folding --dir=. --target="$HOME" pi ssh
 # 仅适用于当前桌面布局/设备：
 stow --simulate --verbose --no-folding --dir=hosts --target="$HOME" desktop
 ```
 
 检查预览并处理冲突后，去掉 `--simulate` 才会实际部署。根目录的 Bash/Vim/Git 文件需要单独建立链接，不能把整个仓库当作一个 Stow 包。已有整目录链接可以继续使用；新建配置优先逐文件链接，避免运行状态自动落入仓库。
+
+## SSH 配置
+
+`ssh/.ssh/config` 管理通用保活、连接超时和 GitHub SSH-over-443 设置，通过 `Include ~/.ssh/config.local` 加载仓库外的私有配置。SSH 对多数选项采用第一个匹配值，因此本机配置先加载，可以覆盖共享默认值。
+
+当前机器的实验室主机地址、登录账号和 GitHub 本机 SOCKS 代理保存在 `~/.ssh/config.local`。该文件需要单独安全备份；换机器时按需恢复，并检查代理端口与 `nc` 的 SOCKS 支持。没有该文件时，共享配置仍可使用，GitHub 默认直接连接 `ssh.github.com:443`。
+
+首次部署时，先备份已有 `~/.ssh/config`，把主机专属设置放入 `~/.ssh/config.local`，再部署 `ssh` Stow 包。保持 `~/.ssh` 权限为 `700`，`config.local` 为 `600`。只链接 `config` 文件，不链接整个 `.ssh` 目录。
+
+私钥、公钥、`authorized_keys`、`known_hosts` 及其备份不纳入这个包。`.gitignore` 仅放行 `ssh/.ssh/config`，避免误收录其他 SSH 文件。公钥虽不是秘密，也不需要随共享客户端配置部署。
+
+可用 `ssh -G lab_3090` 或 `ssh -G github.com` 检查最终配置；`-G` 只解析配置，不建立 SSH 连接。
 
 ## 音频服务
 

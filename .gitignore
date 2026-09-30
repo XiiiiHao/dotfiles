@@ -4,6 +4,13 @@
 # 不要在这里忽略真正的配置源文件。
 # ============================================================
 
+# --- SSH ---
+# SSH 包只允许共享配置进入仓库；密钥、授权列表、主机记录和本机配置均排除。
+/ssh/.ssh/*
+!/ssh/.ssh/config
+# 防止误将 HOME 下的 .ssh 目录直接复制到仓库根目录。
+/.ssh/
+
 # --- Desktop shells ---
 # DMS 自动生成的主题、版本标记和下载的插件；保留 settings.json / clsettings.json。
 .config/DankMaterialShell/.config/DankMaterialShell/*.css
