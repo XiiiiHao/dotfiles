@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# chrome-proxy —— 带本地代理启动 Google Chrome
+#
+# 用法:
+#   chrome-proxy                      # 使用默认代理 127.0.0.1:7897
+#   PROXY_PORT=7890 chrome-proxy      # 临时改用其他端口
+#   chrome-proxy --incognito https://example.com
+#
+# 说明:
+#   - 导出 http_proxy / https_proxy / all_proxy 等环境变量，
+#     供 Chrome 及其子进程使用；
+#   - 同时显式传入 --proxy-server。因为 GNOME 下 Chrome 默认读取
+#     gsettings 的代理设置，纯环境变量可能被忽略，显式参数最可靠。
+
+set -euo pipefail
+
+PROXY_HOST="${PROXY_HOST:-127.0.0.1}"
+PROXY_PORT="${PROXY_PORT:-7897}"
+
+#  HTTP(S) / FTP / SOCKS 代理环境变量
+export http_proxy="http://${PROXY_HOST}:${PROXY_PORT}"
+export https_proxy="$http_proxy"
+export ftp_proxy="$http_proxy"
+export all_proxy="socks5://${PROXY_HOST}:${PROXY_PORT}"
+export HTTP_PROXY="$http_proxy"
+export HTTPS_PROXY="$https_proxy"
+export ALL_PROXY="$all_proxy"
+
+# 本地与内网地址不走代理
+export no_proxy="localhost,127.0.0.1,::1"
+export NO_PROXY="$no_proxy"
+
+exec /usr/bin/google-chrome-stable \
+    --proxy-server="http://${PROXY_HOST}:${PROXY_PORT}" \
+    "$@"

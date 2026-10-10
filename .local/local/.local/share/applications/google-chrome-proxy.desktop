@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Name=Google Chrome (代理)
+GenericName=Web Browser
+GenericName[zh_CN]=网页浏览器
+Comment=Launch Google Chrome through the local proxy on port 7897
+Comment[zh_CN]=通过本地 7897 端口代理启动 Google Chrome
+Exec=/home/xiiiihao/.local/bin/chrome-proxy %U
+Terminal=false
+Icon=google-chrome
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/google-chrome;
+StartupNotify=true
+StartupWMClass=Google-chrome
