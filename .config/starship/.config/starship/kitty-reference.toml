@@ -1,6 +1,6 @@
 # Minimal two-line prompt using the terminal's ANSI palette.
 add_newline = false
-format = "$directory[\uf06d](purple)$line_break$character"
+format = "[\uf06d](purple) $directory$git_branch$git_status$line_break$character"
 
 [directory]
 style = "blue"
@@ -19,3 +19,22 @@ vimcmd_symbol = "[\u276e](green)"
 vimcmd_replace_one_symbol = "[\u276e](purple)"
 vimcmd_replace_symbol = "[\u276e](purple)"
 vimcmd_visual_symbol = "[\u276e](yellow)"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = "\ue725 "
+style = "purple"
+truncation_length = 24
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "yellow"
+conflicted = "=${count} "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕${count} "
+untracked = "?${count} "
+modified = "!${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "✘${count} "
