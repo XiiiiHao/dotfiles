@@ -60,3 +60,24 @@ alias \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
 
 alias ag="aichat"
+
+# tmux
+alias \
+	tx="tmux new -A -s" \
+	ta="tmux attach" \
+	tl='tmux list-sessions -F "#{session_name}  #{session_windows}w  #{session_created_string}"'
+
+# Pick a tmux session with fzf, confirm, then kill that exact session.
+tk() {
+	local session
+	session=$(tmux list-sessions -F '#{session_name}' 2>/dev/null | fzf --prompt='kill session> ') || return 0
+	[ -n "$session" ] || return 0
+
+	local answer
+	printf 'kill tmux session "%s"? [y/N] ' "$session"
+	read -r answer
+	case "$answer" in
+		[yY] | [yY][eE][sS]) tmux kill-session -t "=$session" ;;
+		*) echo 'cancelled' ;;
+	esac
+}
