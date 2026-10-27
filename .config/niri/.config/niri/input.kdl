@@ -64,5 +64,7 @@ input {
     }
 
     // warp-mouse-to-focus
-    focus-follows-mouse
+    // 只在窗口已经完整显示在屏幕内时才跟随鼠标聚焦；
+    // 若聚焦会导致视图滚动（例如窗口只露出一部分、跨屏/全屏切换），则忽略鼠标。
+    focus-follows-mouse max-scroll-amount="0%"
 }

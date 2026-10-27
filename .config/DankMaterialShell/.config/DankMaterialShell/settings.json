@@ -30,10 +30,12 @@
   },
   "launcherLogoMode": "compositor",
   "fontScale": 1.1500000000000001,
+  "notepadAutoSave": true,
   "terminalsAlwaysDark": true,
   "notificationOverlayEnabled": true,
   "maxFprintTries": 3,
   "osdPowerProfileEnabled": true,
+  "displayProfileAutoSelect": true,
   "barConfigs": [
     {
       "id": "default",
@@ -115,7 +117,8 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true
+    "valid": true,
+    "rgba": -1
   },
   "systemMonitorCustomColor": {
     "r": 1,
@@ -128,7 +131,8 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true
+    "valid": true,
+    "rgba": -1
   },
   "builtInPluginSettings": {
     "dms_settings_search": {
