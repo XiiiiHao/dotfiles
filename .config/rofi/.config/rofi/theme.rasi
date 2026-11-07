@@ -4,10 +4,10 @@
  */
 
 * {
-    main-bg:            #141311B3;
-    main-fg:            #e6e2ddE6;
-    main-br:            #93908cE6;
-    main-ex:            #141311E6;
-    select-bg:          #4d473280;
-    select-fg:          #ece2c6E6;
+    main-bg:            #131315B3;
+    main-fg:            #e4e2e3E6;
+    main-br:            #929092E6;
+    main-ex:            #131315E6;
+    select-bg:          #41475380;
+    select-fg:          #dde2f2E6;
 }

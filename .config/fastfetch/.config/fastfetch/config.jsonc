@@ -14,9 +14,9 @@
   "display": {
     "separator": " ", // Separator between keys and values
     "color": {
-      //"keys": "#cdc6b4", // Key color module名字的颜色
-      "title": "#cac6c1", // Title color 主机名的颜色
-      "output": "#cac6c1"
+      //"keys": "#c4c6d0", // Key color module名字的颜色
+      "title": "#c8c6c7", // Title color 主机名的颜色
+      "output": "#c8c6c7"
     },
   },
   "modules": [
@@ -26,96 +26,96 @@
       "key": "OS", //module名字的显示
       // "keyColor": "#00ff00",      //module名字颜色
       // "format": "{name} {version}",    //具体内容
-      "keyColor": "#d0c6ab",
+      "keyColor": "#c1c6d6",
    
     },
     {
       "type": "kernel",
       "key": " ├   KER ",
-      "keyColor": "#d0c6ab",
+      "keyColor": "#c1c6d6",
 
     },
     {
       "type": "packages",
       "key": " ├   PAK ",
       "format": "{all}",
-      "keyColor": "#d0c6ab",
+      "keyColor": "#c1c6d6",
     },
     {
       "type": "title",
       "key": " └   USR ",
-      "keyColor": "#d0c6ab",
+      "keyColor": "#c1c6d6",
     },
     "break",
     "break",
     {
       "type": "wm",
       "key": "WM",
-      "keyColor": "#d2c6a1",
+      "keyColor": "#bec6dc",
    },
     {
       "type": "de",
       "key": " ├ 󱈹  DES ",
-      "keyColor": "#d2c6a1",
-     //"outputColor": "#d2c6a1"
+      "keyColor": "#bec6dc",
+     //"outputColor": "#bec6dc"
     },
     {
       "type": "shell",
       "key": " ├   SHE ",
-      "keyColor": "#d2c6a1",
-      //"outputColor": "#d2c6a1"
+      "keyColor": "#bec6dc",
+      //"outputColor": "#bec6dc"
     },
     {
       "type": "terminal",
       "key": " ├   TER ",
-      "keyColor": "#d2c6a1",
-      //"outputColor": "#d2c6a1"
+      "keyColor": "#bec6dc",
+      //"outputColor": "#bec6dc"
     },
     {
       "type": "terminalfont",
       "key": " └   TFO ",
-      "keyColor": "#d2c6a1",
-      //"outputColor": "#d2c6a1"
+      "keyColor": "#bec6dc",
+      //"outputColor": "#bec6dc"
     },
     "break",
     "break",
     {
       "type": "host",
       "key": "PC ",
-      "keyColor": "#eae2cf",
-      //"outputColor": "#cdc6b4"
+      "keyColor": "#e0e2ec",
+      //"outputColor": "#c4c6d0"
     },
     {
       "type": "cpu",
       "key": " ├   CPU ",
-      "keyColor": "#eae2cf",
-      //"outputColor": "#cdc6b4"
+      "keyColor": "#e0e2ec",
+      //"outputColor": "#c4c6d0"
     },
     {
       "type": "memory",
       "key": " ├   MEM ",
-      "keyColor": "#eae2cf",
-      //"outputColor": "#cdc6b4"
+      "keyColor": "#e0e2ec",
+      //"outputColor": "#c4c6d0"
     },
     {
       "type": "gpu",
       "key": " ├ 󰢮  GPU ",
       "format": "{1} {2}",
-      "keyColor": "#eae2cf",
-      //"outputColor": "#cdc6b4"
+      "keyColor": "#e0e2ec",
+      //"outputColor": "#c4c6d0"
     },
     {
       "type": "display",
       "key": " ├   MON ",
       "format": "{name} {width}x{height}@{refresh-rate} ",
-      "keyColor": "#eae2cf",
-      //"outputColor": "#cdc6b4"
+      "keyColor": "#e0e2ec",
+      //"outputColor": "#c4c6d0"
     },
     {
       "type": "disk",
       "key": " └ 󰋊  DIS ",
-      "keyColor": "#eae2cf",
-      //"outputColor": "#cdc6b4"
+      "keyColor": "#e0e2ec",
+      //"outputColor": "#c4c6d0"
     },
     "break",
     "break",
