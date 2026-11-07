@@ -16,7 +16,11 @@ include "colors.kdl"
 include "animation.kdl"
 include "startup.kdl"
 // DMS 接入：启动、快捷键与生成配置引用。
-include "dms.kdl"
+// 已停用，改用 Noctalia v5。恢复时注释掉 noctalia.kdl、取消下面一行的注释即可。
+// include "dms.kdl"
+
+// Noctalia v5 接入：启动、窗口/层规则、模糊、快捷键。
+include "noctalia.kdl"
 
 // 截图保存位置
 screenshot-path "~/Pictures/Screenshots/Niri-screenshots/%Y-%m-%d %H-%M-%S.png"

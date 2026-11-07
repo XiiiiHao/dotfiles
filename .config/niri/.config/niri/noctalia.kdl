@@ -1,0 +1,120 @@
+//  ███    ██  ██████   ██████ ████████  █████  ██      ██  █████
+//  ████   ██ ██    ██ ██         ██    ██   ██ ██      ██ ██   ██
+//  ██ ██  ██ ██    ██ ██         ██    ███████ ██      ██ ███████
+//  ██  ██ ██ ██    ██ ██         ██    ██   ██ ██      ██ ██   ██
+//  ██   ████  ██████   ██████    ██    ██   ██ ███████ ██ ██   ██
+//
+// Noctalia v5 的 niri 侧接入配置。
+//
+// 启用方式：在 config.kdl 里注释 include "dms.kdl"，改成 include "noctalia.kdl"。
+// 不要同时启用 dms.kdl 和 noctalia.kdl —— 会两条状态栏、两个通知服务互相抢。
+//
+// 参考文档：https://docs.noctalia.dev/noctalia/v5.4.1/compositor-settings/niri/
+
+// ---------------------------------------------------------------------------
+// 启动
+// ---------------------------------------------------------------------------
+// --daemon 会在 shell 初始化完成后才返回，避免阻塞后续 spawn-at-startup。
+// 前台调试时手动执行 `noctalia`，日志在 ~/.cache/noctalia/noctalia.log。
+spawn-at-startup "noctalia" "--daemon"
+
+// ---------------------------------------------------------------------------
+// 窗口规则
+// ---------------------------------------------------------------------------
+window-rule {
+    // Noctalia 的设置窗口：浮层、固定尺寸
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+debug {
+    // 允许通知上的动作按钮、以及 Noctalia 请求激活窗口。
+    // 不加这条，点击通知里的按钮会没有反应。
+    honor-xdg-activation-with-invalid-serial
+}
+
+// ---------------------------------------------------------------------------
+// 层规则：overview 背景（对应原 wpblur.kdl 的做法）
+// ---------------------------------------------------------------------------
+// Noctalia 的 [backdrop] 已启用，它会生成一条模糊+着色的背景层，
+// 这里把它塞进 niri 的 overview backdrop，于是总览里看到的就是模糊壁纸。
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+// ---------------------------------------------------------------------------
+// 模糊
+// ---------------------------------------------------------------------------
+// niri 26.04+ 支持 ext-background-effects。Noctalia 检测到该协议后
+// 会自己上报模糊区域，但如果保留 niri 默认的 xray=true，模糊采样的是壁纸，
+// 圆角边缘会透出壁纸色的小毛边。关掉 xray 让它采样背后真实内容。
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+    }
+}
+
+// 窗口切换器本身没有背景模糊区域，手动给上。
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 快捷键
+// ---------------------------------------------------------------------------
+// 这里只放「不和现有 binds.kdl 冲突」的键。
+// 你现有的 Mod+D=rofi / Mod+S=浮动 / Mod+P=mark-shot / XF86*=wpctl 全部保持原样。
+binds {
+    // 启动器（浮层居中）
+    Mod+Space hotkey-overlay-title="Noctalia 启动器" repeat=false { spawn-sh "noctalia msg panel-toggle launcher"; }
+
+    // 开关顶栏。原来 Mod+B 绑的是 DMS 的 bar toggle，这里换成 Noctalia 的 bar-toggle。
+    // reserve_space = true，隐藏时会同时释放占用的屏幕边缘空间。
+    Mod+B hotkey-overlay-title="开关顶栏 Toggle bar" repeat=false { spawn-sh "noctalia msg bar-toggle"; }
+
+    // 壁纸管理面板（对应原 DMS 的 Mod+Shift+W dash wallpaper）
+    Mod+Shift+W hotkey-overlay-title="壁纸管理 Wallpaper" repeat=false { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+
+    // 剪贴板（对应原 DMS 的 Mod+Shift+V clipboard）
+    Mod+Shift+V hotkey-overlay-title="剪贴板 Clipboard" repeat=false { spawn-sh "noctalia msg panel-toggle clipboard"; }
+
+    // 设置窗口
+    Mod+Shift+Comma hotkey-overlay-title="Noctalia 设置" repeat=false { spawn-sh "noctalia msg settings-toggle"; }
+
+    // 窗口切换器（按住 Alt+Tab 连续切换，松开确认）
+    Alt+Tab hotkey-overlay-title="窗口切换器" repeat=false { spawn-sh "noctalia msg window-switcher hold"; }
+
+    // 临时把顶栏抬到全屏应用之上 / 放回 top 层
+    Mod+Alt+B hotkey-overlay-title="顶栏层级切换" repeat=false { spawn-sh "noctalia msg bar-layer-set overlay"; }
+    // Mod+Alt+Shift+B { spawn-sh "noctalia msg bar-layer-set top"; }
+}
+
+// ---------------------------------------------------------------------------
+// 可选：把音量 / 亮度键交给 Noctalia（这样才能弹出 Noctalia 的 OSD）
+// ---------------------------------------------------------------------------
+// 使用前必须先把 binds.kdl 里对应的 4 行（XF86Audio* / XF86MonBrightness*）
+// 注释掉，否则 niri 会报重复绑定。注意 allow-when-locked 会丢失，
+// 锁屏状态下这些键将不再生效。
+//
+// binds {
+//     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+//     XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+//     XF86AudioMute        { spawn-sh "noctalia msg volume-mute"; }
+//     XF86MonBrightnessUp   { spawn-sh "noctalia msg brightness-up"; }
+//     XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+// }
+
+// ---------------------------------------------------------------------------
+// 可选：笔记本合盖锁定（台式机忽略）
+// ---------------------------------------------------------------------------
+// switch-events {
+//     lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+// }

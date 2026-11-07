@@ -25,13 +25,17 @@ spawn-at-startup "xwayland-satellite"
 // spawn-sh-at-startup "systemctl --user restart pipewire.service && systemctl --user restart wireplumber.service pipewire-pulse.service"
 
 // 通知程序
-spawn-at-startup "mako"
+// 已交给 Noctalia（[notification] enable_daemon = true），避免抢
+// org.freedesktop.Notifications。恢复 mako 时把下面一行的注释去掉，
+// 并停用 Noctalia 的通知服务。
+// spawn-at-startup "mako"
 
 // 任务栏
 // spawn-at-startup "waybar"
 
 // 剪贴板守护进程
-spawn-at-startup "clipse" "--listen"
+// 已交给 Noctalia（[shell] clipboard_enabled = true）。
+// spawn-at-startup "clipse" "--listen"
 
 // wayland -> x11 剪贴板同步（保留图片 MIME 类型，供 XWayland 应用使用）
 spawn-at-startup "~/.local/bin/clipsync-w2x"
@@ -43,7 +47,8 @@ spawn-at-startup "~/.local/bin/clipsync-x2w"
 spawn-at-startup "~/.config/niri/scripts/swayidle.sh"
 
 // 大写锁定键的 OSD 显示
-spawn-at-startup "swayosd-server"
+// 已交给 Noctalia（[osd] enabled = true），避免两套音量/锁定弹窗。
+// spawn-at-startup "swayosd-server"
 
 // alt+tab 切换器（第三方，无缩略图显示）
 // spawn-at-startup "niriswitcher"
