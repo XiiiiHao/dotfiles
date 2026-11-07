@@ -51,8 +51,8 @@ layout {
     // 设置工作区背景颜色
     // background-color "transparent"
 
-    // 窗口和窗口之间的间距
-    gaps 12
+    // 窗口和窗口之间的间距（同时也决定窗口到屏幕边缘的间距）
+    gaps 8
 
     // always-center-single-column
     // empty-workspace-above-first
