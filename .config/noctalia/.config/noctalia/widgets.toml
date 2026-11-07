@@ -1,0 +1,143 @@
+# ============================================================================
+#  Bar widget 定义
+#  名字即标识：bar.toml 里的 start/center/end 直接用这些 [widget.<name>]
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+#  左段：启动器 → 工作区 → 当前窗口
+# ----------------------------------------------------------------------------
+[widget.launcher]
+type = "launcher"
+glyph = "menu-2"              # 想换成发行版 logo 就换成对应 glyph 名
+# custom_image = "/home/xiiiihao/.face"
+custom_image_colorize = true
+
+[widget.workspaces]
+type = "workspaces"
+style = "regular"             # regular（数字胶囊）| minimal | focus_hint（应用图标）
+show_labels = true
+labels_only_when_occupied = true
+label_source = "id"
+max_label_chars = 2
+hide_when_empty = false
+show_all_outputs = false
+show_tooltip = true
+change_color_on_hover = true
+focused_output_only = false
+
+# 配色沿用主题色角色
+focused_color = "primary"
+occupied_color = "secondary"
+empty_color = "surface_container_high"
+urgent_color = "error"
+
+# 胶囊尺寸（DMS 的 workspaceSwitcher 是方点）
+pill_scale = 1.0
+active_pill_size = 2.2
+inactive_pill_size = 1.0
+
+[widget.active_window]
+type = "active_window"
+icon_size = 15
+min_length = 80
+max_length = 220
+title_scroll = "none"         # none | always | hover
+
+# ----------------------------------------------------------------------------
+#  中段：媒体 → 时钟 → 天气
+# ----------------------------------------------------------------------------
+[widget.media]
+type = "media"
+art_size = 16
+min_length = 80
+max_length = 200
+title_scroll = "on_hover"     # 鼠标悬停才滚动，平时不动
+hide_when_no_media = true     # 没在放音乐时整个隐藏，和 DMS 的 music widget 一致
+
+[widget.clock]
+type = "clock"
+# DMS showSeconds = true → 带秒
+format = "{:%H:%M:%S}"
+vertical_format = "{:%H\n%M\n%S}"
+tooltip_format = "{:%A, %Y-%m-%d}"
+
+[widget.weather]
+type = "weather"
+max_length = 180
+show_temperature = true
+show_condition = false        # 只留温度，和 DMS 的紧凑风格一致
+
+# ----------------------------------------------------------------------------
+#  右段：托盘 → 剪贴板 → CPU → 内存 → 通知 → 电池 → 网络 → 控制中心
+# ----------------------------------------------------------------------------
+[widget.tray]
+type = "tray"
+hide_passive = true           # 隐藏不活跃的托盘项，和 DMS 一致
+drawer = true                 # 装不下时收进抽屉
+drawer_columns = 3
+drawer_item_size = 20
+
+[widget.clipboard]
+type = "clipboard"
+
+[widget.cpu]
+type = "sysmon"
+stat = "cpu_usage"
+visualization = "gauge"       # gauge | graph | none
+show_value = true
+label_show_units = true
+label_min_width = 34          # 避免百分比变化时栏宽跳动
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_used"             # 已用内存（GiB）
+visualization = "gauge"
+show_value = true
+label_min_width = 44
+
+[widget.notifications]
+type = "notifications"
+hide_when_no_unread = true    # 没有未读时收起，省位置
+
+[widget.battery]
+type = "battery"
+enabled = false               # 台式机没有电池，关掉；笔记本改成 true
+
+[widget.network]
+type = "network"
+show_label = false            # 只留图标
+
+[widget.control-center]
+type = "control-center"
+
+# ----------------------------------------------------------------------------
+#  备用 widget（当前不上栏，需要时把名字加进 bar 的 start/center/end）
+# ----------------------------------------------------------------------------
+[widget.volume]
+type = "volume"
+device = "output"
+
+[widget.input_volume]
+type = "volume"
+device = "input"
+
+[widget.bluetooth]
+type = "bluetooth"
+
+[widget.brightness]
+type = "brightness"
+
+[widget.keyboard_layout]
+type = "keyboard_layout"
+
+[widget.privacy]
+type = "privacy"
+
+[widget.session]
+type = "session"
+
+[widget.wallpaper]
+type = "wallpaper"
+
+[widget.spacer]
+type = "spacer"

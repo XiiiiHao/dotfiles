@@ -1,0 +1,121 @@
+# ============================================================================
+#  顶栏  参考 DMS barConfigs[0]
+#
+#  DMS 原始布局：
+#    left   : launcherButton, workspaceSwitcher, focusedWindow
+#    center : music, clock, weather
+#    right  : systemTray, clipboard, cpuUsage, memUsage,
+#             notificationButton, battery, controlCenterButton, vpn
+#
+#  DMS 外观：cornerRadius 12 / blurEnabled true / widgetTransparency 0.47
+#            spacing 4 / innerPadding 4 / fontScale 1.15 / gothCorners 12
+# ============================================================================
+
+[bar]
+
+order = ["default", "secondary"]
+
+# ----------------------------------------------------------------------------
+#  主栏：只在 HDMI-A-2（右侧 Dell）显示，和 DMS 的 screenPreferences 一致
+# ----------------------------------------------------------------------------
+[bar.default]
+
+enabled = true
+position = "top"
+layer = "top"
+
+# 尺寸：DMS innerPadding 4 / spacing 4，换算到 Noctalia 的厚度 34 + padding 12
+thickness = 36
+padding = 12
+widget_spacing = 8
+
+# 圆角 12，贴合屏幕顶边，四角凹形收口（= DMS 的 gothCorners）
+radius = 12
+radius_top_left = 12
+radius_top_right = 12
+radius_bottom_left = 12
+radius_bottom_right = 12
+concave_edge_corners = false      # 显示器不是贴着圆角机身，保持凸角更干净
+margin_edge = 0
+margin_ends = 0
+margin_opposite_edge = 0
+
+# 背景：半透明 + 交给合成器做真实模糊（你 niri 已开 blur passes 2）
+background_opacity = 0.62
+compositor_blur = true
+shadow = true
+contact_shadow = true
+panel_overlap = 1
+
+# 边框：DMS borderEnabled = false，这里也不画
+border_width = 0.0
+
+# 悬停时给 widget 轻微着色（DMS 默认行为）
+hover_highlight = true
+show_tooltip = true
+
+# 文字略微放大，接近 DMS 的 fontScale 1.15
+scale = 1.0
+font_scale = 1.12
+font_weight = 500
+font_family = "Maple Mono NF CN"
+
+# ---- Widget 胶囊：对应 DMS widgetTransparency 0.47 的"每个 widget 一块底色"
+capsule = true
+capsule_fill = "surface_container"
+capsule_opacity = 0.55
+capsule_padding = 6
+capsule_thickness = 0.74
+# capsule_border = "outline_variant"
+capsule_border_width = 0.0
+
+# ---- 三段布局
+start = ["launcher", "workspaces", "active_window"]
+center = ["media", "clock", "weather"]
+end = [
+    "tray",
+    "clipboard",
+    "cpu",
+    "ram",
+    "notifications",
+    "battery",
+    "network",
+    "control-center",
+]
+
+# 鼠标手势：右键开控制中心是默认行为，这里显式写出来方便你改
+    [bar.default.dead_zone]
+    click_through = false
+
+        [bar.default.dead_zone.actions]
+        middle = "panel-toggle launcher"
+        scroll_up = "volume-up"
+        scroll_down = "volume-down"
+        back = "media previous"
+        forward = "media next"
+
+# ---- 逐显示器覆盖
+# DMS 只在 HDMI-A-2 上显示栏，另一块屏（DP-1）关掉。
+# 想让两块屏都有栏：把下面这段 enabled 改成 true，或整段删掉。
+[bar.default.monitor."DP-1"]
+match = "DP-1"
+enabled = false
+
+# ----------------------------------------------------------------------------
+#  备用栏：默认关闭。若想要双显示器各一条，把 enabled 改 true，
+#  并在 order 里保留 "secondary"。
+# ----------------------------------------------------------------------------
+[bar.secondary]
+enabled = false
+position = "top"
+thickness = 36
+padding = 12
+widget_spacing = 8
+radius = 12
+margin_ends = 0
+background_opacity = 0.62
+compositor_blur = true
+
+start = ["launcher", "workspaces"]
+center = ["clock"]
+end = ["tray", "notifications", "network", "control-center"]

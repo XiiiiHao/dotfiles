@@ -1,0 +1,42 @@
+# ============================================================================
+#  主题 / 配色
+# ============================================================================
+
+[theme]
+
+# 深色 / 浅色。DMS 用的是动态深色，这里先固定深色；
+# 想跟随时间自动切换改成 "auto"。
+mode = "dark"
+
+# mode = "auto" 时，哪种模式算"跟随"（follow | dark | light | auto）
+shell_mode = "follow"
+
+# 配色来源：
+#   builtin   → 内置主题
+#   wallpaper → 从壁纸提取（动态取色，相当于 DMS 的 currentThemeName="dynamic"）
+#   community → 社区调色板
+#   custom    → ~/.config/noctalia/palettes/ 下你自己的
+source = "wallpaper"
+
+# source = "wallpaper" 时的取色算法。
+# DMS 里是 matugenScheme = "scheme-content"，这里用等价的 m3-content。
+wallpaper_scheme = "m3-content"
+
+builtin = "Noctalia"
+pure_black_dark = false
+
+# 不要让 Noctalia 去改 GNOME 的 color-scheme 偏好（你的 GTK 主题由 matugen 管）。
+sync_color_scheme = false
+
+# ----------------------------------------------------------------------------
+#  外部应用主题模板
+# ----------------------------------------------------------------------------
+# 关键：全部关掉。
+# 你已经有一套完整的 matugen 管线（kitty/ghostty/gtk/qt/mako/btop/cava/yazi/
+# rofi/fuzzel/wlogout/fcitx5），Noctalia 的模板会往同样的文件里写，
+# 两边互相覆盖。保持 matugen 为唯一来源。
+[theme.templates]
+enable_builtin_templates = false
+enable_community_templates = false
+builtin_ids = []
+community_ids = []

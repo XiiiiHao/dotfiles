@@ -1,0 +1,30 @@
+# ============================================================================
+#  壁纸  参考 DMS：wallpaperFillMode = "Stretch"，blurredWallpaperLayer = true
+# ============================================================================
+
+[wallpaper]
+enabled = true
+
+# 壁纸目录（壁纸选择面板浏览的路径）
+directory = "/home/xiiiihao/Pictures/Wallpapers"
+# 主题感知目录：深色/浅色各用一套（默认关，和 DMS 单一目录一致）
+# directory_dark  = "/home/xiiiihao/Pictures/Wallpapers"
+# directory_light = "/home/xiiiihao/Pictures/Wallpapers"
+per_monitor_directories = false
+
+# DMS 用的是拉伸铺满
+fill_mode = "stretch"        # center | crop | fit | stretch | repeat | span
+
+# 切换动画（每次从数组里随机挑一个）
+transition = ["fade", "zoom", "disc", "pixel"]
+transition_duration = 800
+edge_smoothness = 0.3
+transition_on_startup = false
+
+# 壁纸轮换（你的 random-anime-wallpaper.sh 已有一套，这里先关）
+    [wallpaper.automation]
+    enabled = false
+    interval_seconds = 1800
+    order = "random"
+    recursive = true
+    pause_on_fullscreen = true

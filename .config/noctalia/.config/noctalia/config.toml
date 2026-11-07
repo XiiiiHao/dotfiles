@@ -1,0 +1,197 @@
+# ============================================================================
+#  Noctalia v5 — 主配置（入口）
+#  参考自当前 niri + DMS（DankMaterialShell）配置
+#
+#  加载顺序：内置默认值 → 本目录所有 *.toml（按文件名排序）→ GUI 覆盖
+#  GUI 覆盖写在 ~/.local/state/noctalia/settings.toml，优先级最高。
+#  改完用 `noctalia config validate` 校验。
+# ============================================================================
+
+[shell]
+
+# 全局字体。GTK 侧你用的是 Source Han Sans CN，保持一致。
+font_family = "Source Han Sans CN"
+
+# 已有 polkit-gnome-authentication-agent-1 在 startup.kdl 里跑，
+# 这里必须保持 false，否则会同时注册两个认证代理。
+polkit_agent = false
+
+# 外观细节：DMS 里 cardBorders / buttonBorders 都开着
+button_borders = true
+card_borders = true
+popup_borders = true
+popup_shadows = true
+corner_radius_scale = 1.0
+
+# 时间/日期格式（受 [widget.clock] 覆盖，这里只是兜底）
+time_format = "{:%H:%M}"
+date_format = "%A, %x"
+
+# niri 集成：overview 里打字直接拉起 launcher（默认关，需要 niri 侧配合）
+niri_overview_type_to_launch_enabled = false
+niri_overview_close_on_launch_enabled = false
+
+    [shell.animation]
+    enabled = true
+    speed = 1.0
+
+    # 启动器：DMS 里有分类和最近使用
+    [shell.launcher]
+    layout = "full"
+    categories = true
+    show_icons = true
+    show_settings_button = true
+    show_session_button = true
+    sort_by_usage = true
+    track_usage = true
+    width = 760
+
+    # 启动器 / 面板都是浮动居中（DMS 也是居中浮层）
+    [shell.panel]
+    launcher_placement = "floating"
+    launcher_position = "center"
+    clipboard_placement = "floating"
+    clipboard_position = "center"
+    control_center_placement = "attached"
+    control_center_position = "auto"
+    shadow = true
+    borders = true
+
+    # Alt+Tab 切换器（文档推荐的 niri 键位就是 alt+tab）
+    [shell.window_switcher]
+    style = "carousel"
+    show_app_icon = true
+    show_caption = true
+    current_workspace_only = false
+
+    # 截图：沿用你 niri 里的保存路径
+    [shell.screenshot]
+    directory = "/home/xiiiihao/Pictures/Screenshots/Niri-screenshots"
+    format = "png"
+    save_to_file = true
+    copy_to_clipboard = true
+    annotate = false          # 你已有 mark-shot 负责标注，这里不做二次标注
+    show_cursor = false
+
+# ----------------------------------------------------------------------------
+#  通知
+# ----------------------------------------------------------------------------
+# 注意：Noctalia 自己要当 Notification Server，会和 mako 抢
+#       org.freedesktop.Notifications。启用前请把 mako 从 startup.kdl 移除。
+[notification]
+enable_daemon = true
+position = "top_right"
+width = 360
+background_opacity = 0.97
+border = true
+offset_x = 20
+offset_y = 36               # 让开顶栏
+max_visible = 0
+show_actions = true
+show_app_name = true
+
+# ----------------------------------------------------------------------------
+#  OSD（音量/亮度弹窗）
+# ----------------------------------------------------------------------------
+# 注意：会和 swayosd-server 功能重叠，建议二选一。
+[osd]
+enabled = true
+position = "top_center"
+offset_y = 36
+hide_delay_ms = 1400
+scale = 1.0
+
+    [osd.kinds]
+    volume = true
+    volume_output = true
+    volume_input = true
+    brightness = true
+    keyboard_layout = true
+    lock_keys = true
+    media = true
+    nightlight = true
+    power_profile = true
+    wifi = true
+    bluetooth = true
+    caffeine = true
+    dnd = true
+
+# ----------------------------------------------------------------------------
+#  锁屏
+# ----------------------------------------------------------------------------
+[lockscreen]
+enabled = true
+fingerprint = true          # DMS 里 maxFprintTries = 3，说明你有指纹
+lock_before_suspend = true
+blurred_desktop = true
+blur_intensity = 0.5
+tint_intensity = 0.35
+transition_duration = 900
+
+# ----------------------------------------------------------------------------
+#  空闲行为
+# ----------------------------------------------------------------------------
+# 你目前用 ~/.config/niri/scripts/swayidle.sh 做锁屏/熄屏，
+# 所以这里全部保持关闭。要交给 Noctalia 管，再逐条把 enabled 改 true。
+[idle]
+behavior_order = ["lock", "screen-off", "lock-and-suspend"]
+
+    [idle.behavior.lock]
+    enabled = false
+    timeout = 600
+
+    [idle.behavior.screen-off]
+    enabled = false
+    timeout = 660
+
+    [idle.behavior.lock-and-suspend]
+    enabled = false
+    timeout = 900
+
+# ----------------------------------------------------------------------------
+#  控制中心
+# ----------------------------------------------------------------------------
+[control_center]
+width = 700
+sidebar = "compact"
+circular_avatar = true
+show_session_button = true
+
+    [control_center.media]
+    show_visualizer = true
+
+# ----------------------------------------------------------------------------
+#  niri overview 背景层
+# ----------------------------------------------------------------------------
+# 对应你原来的 dms/wpblur.kdl：把模糊壁纸放到 niri 的 overview backdrop 上。
+# 需要在 niri 侧加 layer-rule（见 noctalia.kdl）。
+[backdrop]
+enabled = true
+blur_intensity = 0.5
+tint_intensity = 0.3
+
+# ----------------------------------------------------------------------------
+#  天气定位
+# ----------------------------------------------------------------------------
+[location]
+address = ""
+auto_locate = true
+
+# ----------------------------------------------------------------------------
+#  Hooks
+# ----------------------------------------------------------------------------
+# 壁纸变了就重跑你的 matugen 管线，让 kitty/gtk/qt/mako 等跟着换色。
+# Noctalia 会把新壁纸路径通过 NOCTALIA_WALLPAPER_PATH 传进来，
+# 比你脚本里原先靠 DMS session.json / swww 探测要可靠。
+[hooks]
+wallpaper_changed = [
+    "/home/xiiiihao/.config/scripts/matugen-update.sh \"$NOCTALIA_WALLPAPER_PATH\"",
+]
+
+# ----------------------------------------------------------------------------
+#  系统监控采样（沿用默认，只调 CPU 轮询更灵敏一点）
+# ----------------------------------------------------------------------------
+[system.monitor]
+enabled = true
+cpu_poll_seconds = 2.0
+memory_poll_seconds = 2.0
