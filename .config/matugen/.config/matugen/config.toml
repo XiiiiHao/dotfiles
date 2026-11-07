@@ -21,10 +21,14 @@ output_path = '~/.config/fuzzel/colors.ini'
 input_path = '~/.config/matugen/templates/rofi-colors.rasi'
 output_path = '~/.config/rofi/theme.rasi'
 
-[templates.kitty]
-input_path = '~/.config/matugen/templates/kitty-colors.conf'
-output_path ='~/.config/kitty/themes/matugen.conf'
-post_hook = "kitty +kitten themes --reload-in=all matugen &"
+# kitty 使用 kitty.conf 里的静态 Catppuccin Macchiato 配色（背景 #222435，
+# 特意与 tmux 面板底色对齐），不再由 matugen 接管。
+# 若不注释下面这段，post_hook 里的 `kitten themes` 会重写 kitty.conf：
+# 注释掉静态色板、插入 BEGIN_KITTY_THEME 块、把背景改成 matugen 计算的深色。
+# [templates.kitty]
+# input_path = '~/.config/matugen/templates/kitty-colors.conf'
+# output_path ='~/.config/kitty/themes/matugen.conf'
+# post_hook = "kitty +kitten themes --reload-in=all matugen &"
 
 [templates.fcitx5]
 input_path = '~/.config/matugen/templates/fcitx5-theme.conf'
